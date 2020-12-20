@@ -1,0 +1,20 @@
+<button *ngIf="this.logged!='True'" class="cta" (click)="moveToLogIn()">Log in to get access</button>
+<div *ngIf="this.logged=='True'">
+    <div *ngIf="this.fileSent==true" class="error">
+        <h3>Success!</h3>
+    </div>
+    <h2>Select file and submit, then wait for feedback, it may take a while.</h2>
+    <div *ngIf="this.fileSent==false" class="error">
+        <h3>There was an error :( maybe your file has bad extension. (Only .xlsx is accepted)</h3>
+    </div>
+    <div>
+        <form [formGroup]="FileUpload" (ngSubmit)="onSubmit()">
+            <div>
+                <input type="file" name="profile" (change)="onFileSelect($event)" />
+            </div>
+            <div>
+                <button type="submit">Upload</button>
+            </div>
+        </form>
+    </div>
+</div>

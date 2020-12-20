@@ -1,0 +1,322 @@
+<button *ngIf="this.logged!='True'" class="cta" (click)="moveToLogIn()">Log in to get access</button>
+
+<div *ngIf="this.logged=='True'">
+<p>Witamy na stronie testowej podglądu bazy danych! Wybierz arkusz do wyświetlenia.</p>
+<div class="btn-group">
+    <a href="#" (click)="selectSheet('tg')" (click)="path='tg'" class="btn btn-primary shadow-none">TG</a>
+    <a href="#" (click)="selectSheet('invoice')" (click)="path='invoice'" class="btn btn-primary shadow-none">Invoice</a>
+    <a href="#" (click)="selectSheet('el')" (click)="path='el'" class="btn btn-primary shadow-none">EL</a>
+    <a href="#" (click)="selectSheet('poa')" (click)="path='poa'" class="btn btn-primary shadow-none">PoA</a>
+    <a href="#" (click)="selectSheet('ffsteps')" (click)="path='ffsteps'" class="btn btn-primary shadow-none">FF Steps</a>
+    <a href="#" (click)="selectSheet('casehistory')" (click)="path='casehistory'" class="btn btn-primary shadow-none">Case history</a>
+    <a href="#" (click)="selectSheet('history')" (click)="path='history'" class="btn btn-primary shadow-none">Other history</a>
+    <a href="#" (click)="selectSheet('todo')" (click)="path='todo'" class="btn btn-primary shadow-none">To Do</a>
+</div>
+<div *ngIf="users" class="tableBorder">
+<table class="table">
+    <thead *ngIf="path=='tg'" class="table-dark">
+      <tr >
+        <td>ID</td>
+        <td>Patent ID</td>
+        <td>Split Tagging</td>
+        <td>Status</td>
+        <td>Family</td>
+        <td>Digit</td>
+        <td>Patent Ref</td>
+        <td>App Title</td>
+        <td>Country</td>
+        <td>Filed Date</td>
+        <td>First Filing</td>
+        <td>Application Number</td>
+        <td>Grant Date</td>
+        <td>Patent No.</td>
+        <td>Responsible Manager</td>
+        <td>Applicants</td>
+        <td>Clients</td>
+        <td>Current Owners</td>
+        <td>Annuity Agent</td>
+        <td>Primary Law Firm</td>
+        <td>IP Sites</td>
+      </tr>
+    </thead>
+    <thead *ngIf="path=='invoice'" class="table-dark">
+      <tr >
+        <td>ID</td>
+        <td>Action</td>
+        <td>Status</td>
+        <td>Case</td>
+        <td>Firma</td>
+        <td>Numer faktury</td>
+        <td>Data wystawienia</td>
+        <td>Opis</td>
+        <td>Czy wprowadzona do AQ</td>
+        <td>Czy skopiowana na R</td>
+        <td>Czy wysłana do Lipska</td>
+        <td>Numer dokumentu w WF</td>
+        <td>Czy zweryfikowana w WF</td>
+        <td>Czy zaakceptowana w WF</td>
+        <td>Czy płatność zrealizowana</td>
+        <td>Comment</td>
+      </tr>
+    </thead>
+    <thead *ngIf="path=='el'" class="table-dark">
+      <tr >
+        <td>ID</td>
+        <td>Firma</td>
+        <td>Case</td>
+        <td>Opis</td>
+        <td>Numer EL</td>
+        <td>Czy podpisany przez kancelarię?</td>
+        <td>Czy komplet podpisów z ABB?</td>
+        <td>Czy wysłany do kancelarii?</td>
+        <td>Czy wyslany do BR?</td>
+        <td>Czy mam papierową wersję?</td>
+        <td></td>
+      </tr>
+    </thead>
+    <thead *ngIf="path=='poa'" class="table-dark">
+      <tr >
+        <td>ID</td>
+        <td>Case</td>
+        <td>Kancelaria</td>
+        <td>Reprezentant ABB</td>
+        <td>Urząd patentowy</td>
+        <td>Czy jest uzyskane EPO?</td>
+        <td>Czy mam oryginał czy kopię?</td>
+        <td>Czy potwierdzone przez UP</td>
+      </tr>
+    </thead>
+    <thead *ngIf="path=='ffsteps'" class="table-dark">
+      <tr >
+        <td>ID</td>
+        <td>Status</td>
+        <td>PG SO</td>
+        <td>Split tagging</td>
+        <td>Invention ID</td>
+        <td>Case reference</td>
+        <td>Case history</td>
+        <td>IPSO</td>
+        <td>Authorisation</td>
+        <td>Kto pisze - kancelaria</td>
+        <td>Kto pisze - osoba</td>
+        <td>Osoba kontaktowa</td>
+        <td>Czy wysłane do kancelarii?</td>
+        <td>D Numer EL</td>
+        <td>D Data zgłoszenia</td>
+        <td>Data odbioru</td>
+        <td>Numer dokumentu w WF</td>
+        <td>Kto składa - osoba</td>
+        <td>F Numer EL</td>
+        <td>F Data zlecenia</td>
+        <td>Data założenia</td>
+        <td>Kraj</td>
+        <td>Numer zgłoszenia</td>
+        <td>Numer publikacji</td>
+        <td>Tytuł zgłoszenia</td>
+        <td>Czy dokumenty skopiowane na R?</td>
+        <td>Czy dokumenty włożone do teczki?</td>
+        <td>Czy zrobiony wpis do zeszytu?</td>
+        <td>Czy w AQ wprowadzone dane o zgłoszeniu?</td>
+        <td>Czy w AQ załączone pliki?</td>
+        <td>Czy złożony wniosek?</td>
+        <td>Czy wysłany email?</td>
+        <td>Czy jest potwierdzenie?</td>
+        <td>Czy wysłane powiadomienie?</td>
+        <td>S Numer dokumentu w WF</td>
+        <td>F Numer dokumentu w WF</td>
+        <td>Czy przyszedł raport?</td>
+        <td>Czy raport skopiowany?</td>
+        <td>Czy twórcy powiadomieni?</td>
+        <td>Czy raport skopiowany do AQ?</td>
+        <td>Czy opinia wystawiona do AQ?</td>
+        <td>Czy jest decyzja w AQ?</td>
+        <td>Kancelaria</td>
+        <td>E Numer EL</td>
+        <td>E S Numer w WF</td>
+        <td>E F Numer w WF</td>
+        <td>Inna faktura</td>
+        <td>Opis faktury</td>
+        <td>Comments</td>
+      </tr>
+    </thead>
+    <thead *ngIf="path=='casehistory'" class="table-dark">
+      <tr >
+        <td>ID</td>
+        <td>Quick select</td>
+        <td>Case reference</td>
+        <td>History</td>
+      </tr>
+    </thead>
+    <thead *ngIf="path=='history'" class="table-dark">
+      <tr >
+        <td>ID</td>
+        <td>History ID</td>
+        <td>History</td>
+      </tr>
+    </thead>
+    <thead *ngIf="path=='todo'" class="table-dark">
+      <tr >
+        <td>ID</td>
+        <td>Status</td>
+        <td>Data wpisu</td>
+        <td>Akcja</td>
+        <td>Flag</td>
+      </tr>
+    </thead>
+    <tbody *ngIf="path=='tg'">
+      <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.patent_id }}</td>
+          <td>{{ user.split_tagging }}</td>
+          <td>{{ user.status }}</td>
+          <td>{{ user.family }}</td>
+          <td>{{ user.digit }}</td>
+          <td>{{ user.patent_ref }}</td>
+          <td>{{ user.app_title }}</td>
+          <td>{{ user.country }}</td>
+          <td>{{ user.filed_date }}</td>
+          <td>{{ user.first_filing }}</td>
+          <td>{{ user.application_number }}</td>
+          <td>{{ user.grant_date }}</td>
+          <td>{{ user.patent_no }}</td>
+          <td>{{ user.responsible_manager }}</td>
+          <td>{{ user.applicants }}</td>
+          <td>{{ user.clients }}</td>
+          <td>{{ user.current_owners}}</td>
+          <td>{{ user.annuity_agent }}</td>
+          <td>{{ user.primary_law_firm }}</td>
+          <td>{{ user.ip_sites }}</td>
+      </tr>
+    </tbody>
+    <tbody  *ngIf="path=='invoice'">
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.action }}</td>
+        <td>{{ user.status }}</td>
+        <td>{{ user.case }}</td>
+        <td>{{ user.firma }}</td>
+        <td>{{ user.numer_faktury }}</td>
+        <td>{{ user.data_wystawienia }}</td>
+        <td>{{ user.opis }}</td>
+        <td>{{ user.czy_wprowadzona_do_aq }}</td>
+        <td>{{ user.czy_skopiowana_na_r }}</td>
+        <td>{{ user.czy_wyslana_do_lipska }}</td>
+        <td>{{ user.numer_dokumentu_w_wf }}</td>
+        <td>{{ user.czy_zweryfikowana_w_wf }}</td>
+        <td>{{ user.czy_zaakceptowana_w_wf }}</td>
+        <td>{{ user.czy_platnosc_zrealizowana }}</td>
+        <td>{{ user.comment }}</td>
+      </tr>
+    </tbody>
+    <tbody  *ngIf="path=='el'">
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.firma }}</td>
+        <td>{{ user.case }}</td>
+        <td>{{ user.opis }}</td>
+        <td>{{ user.numer_el }}</td>
+        <td>{{ user.czy_podpisany_przez_kancelarie }}</td>
+        <td>{{ user.czy_komplet_podpisow_z_abb }}</td>
+        <td>{{ user.czy_wyslany_do_kancelarii }}</td>
+        <td>{{ user.czy_wyslany_do_br }}</td>
+        <td>{{ user.czy_mam_papierowa_wersje }}</td>
+      </tr>
+    </tbody>
+    <tbody  *ngIf="path=='poa'">
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.case }}</td>
+        <td>{{ user.kancelaria }}</td>
+        <td>{{ user.reprezentant_abb }}</td>
+        <td>{{ user.urzad_patentowy }}</td>
+        <td>{{ user.czy_epo }}</td>
+        <td>{{ user.czy_uzyskane }}</td>
+        <td>{{ user.czy_mam_o_lub_k }}</td>
+        <td>{{ user.czy_powierdzone }}</td>
+      </tr>
+    </tbody>
+    <tbody  *ngIf="path=='ffsteps'">
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.status }}</td>
+        <td>{{ user.pg_so }}</td>
+        <td>{{ user.split_tagging }}</td>
+        <td>{{ user.invention_id }}</td>
+        <td>{{ user.case_reference }}</td>
+        <td>{{ user.case_history }}</td>
+        <td>{{ user.ipso }}</td>
+        <td>{{ user.czy_zalozony_folder }}</td>
+        <td>{{ user.czy_zalozona_teczka }}</td>
+        <td>{{ user.law_firm_w_aq }}</td>
+        <td>{{ user.law_firm_sign }}</td>
+        <td>{{ user.authorisation }}</td>
+        <td>{{ user.kto_pisze_kancelaria }}</td>
+        <td>{{ user.kto_pisze_osoba }}</td>
+        <td>{{ user.osoba_kontraktowa }}</td>
+        <td>{{ user.czy_wyslane_do_kancelarii }}</td>
+        <td>{{ user.d_numer_el }}</td>
+        <td>{{ user.d_data_zlecenia }}</td>
+        <td>{{ user.data_odbioru }}</td>
+        <td>{{ user.numer_dokumentu_w_wf }}</td>
+        <td>{{ user.kto_sklada_kancelaria }}</td>
+        <td>{{ user.kto_sklada_osoba }}</td>
+        <td>{{ user.f_numer_el }}</td>
+        <td>{{ user.f_data_zlecenia }}</td>
+        <td>{{ user.data_zalozenia_fin }}</td>
+        <td>{{ user.kraj }}</td>
+        <td>{{ user.numer_zgloszenia }}</td>
+        <td>{{ user.numer_publikacji }}</td>
+        <td>{{ user.tytul_zgloszenia }}</td>
+        <td>{{ user.czy_dokumenty_skopiowane_na_r }}</td>
+        <td>{{ user.czy_dokumenty_wlozone_do_teczki }}</td>
+        <td>{{ user.czy_zrobiony_wpis_do_zeszytu }}</td>
+        <td>{{ user.czy_w_aq_wprowadzone_dane_o_zgloszeniu }}</td>
+        <td>{{ user.czy_w_aq_zalaczone_pliki }}</td>
+        <td>{{ user.czy_zlozony_wniosek }}</td>
+        <td>{{ user.czy_wyslany_email }}</td>
+        <td>{{ user.czy_jest_potwierdzenie }}</td>
+        <td>{{ user.czy_wyslane_powiadomienie }}</td>
+        <td>{{ user.s_numer_dokumentu_w_wf }}</td>
+        <td>{{ user.f_numer_dokumentu_w_wf }}</td>
+        <td>{{ user.czy_przyszedl_raport }}</td>
+        <td>{{ user.czy_raport_skopiowany }}</td>
+        <td>{{ user.czy_tworcy_powiadomieni }}</td>
+        <td>{{ user.czy_raport_skopiowany_do_aq }}</td>
+        <td>{{ user.czy_opinia_wstawiona_do_aq }}</td>
+        <td>{{ user.czy_jest_decyzja_w_aq }}</td>
+        <td>{{ user.kancelaria }}</td>
+        <td>{{ user.e_numer_el }}</td>
+        <td>{{ user.e_s_numer_w_wf }}</td>
+        <td>{{ user.e_f_numer_w_wf }}</td>
+        <td>{{ user.inna_faktura }}</td>
+        <td>{{ user.opis_faktury }}</td>
+        <td>{{ user.comment }}</td>
+      </tr>
+    </tbody>
+    <tbody  *ngIf="path=='casehistory'">
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.quick_select }}</td>
+        <td>{{ user.case_reference }}</td>
+        <td>{{ user.history }}</td>
+      </tr>
+    </tbody>
+    <tbody  *ngIf="path=='history'">
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.id_name }}</td>
+        <td>{{ user.history_name }}</td>
+      </tr>
+    </tbody>
+    <tbody  *ngIf="path=='todo'">
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.status }}</td>
+        <td>{{ user.data_wpisu }}</td>
+        <td>{{ user.akcja }}</td>
+        <td>{{ user.flag }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

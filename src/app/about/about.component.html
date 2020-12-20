@@ -1,0 +1,5 @@
+<button *ngIf="this.logged!='True'" class="cta" (click)="moveToLogIn()">Log in to get access</button>
+<div *ngIf="this.logged=='True'">
+    <div class="opt" (click)="moveToSingleRecord()"><h1>Create your own record</h1></div>
+    <div class="opt" (click)="moveToFileUpload()"><h1>Upload updated excel file</h1></div>
+</div>

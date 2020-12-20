@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+body, html{
+    height: 100%;
+    margin: 0 auto;
+}
+
+body{
+    font-family: 'Varela Round';
+    font-size: 18px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+    padding: 1.3em;
+    display: grid;
+    grid-template-columns: 30% auto;
+    a{
+        color: white;
+    }
+}
+
+section{
+    width: 80%;
+    margin: 0 auto;
+    padding: 2em;
+    padding-bottom: 6em;
+}
+
+thead{
+    white-space: nowrap;
+}
+
+.tableBorder{
+    width:100%;
+    height:70vh;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+.btn {
+    background-color: red;
+    border-color: red;
+    &:hover{
+        background-color: rgb(180, 0, 0);
+        border-color: rgb(180, 0, 0);
+    }
+    &:active{
+        background-color: rgb(180, 0, 0);
+        border-color: rgb(180, 0, 0);
+    }
+    &:checked{
+        background-color: rgb(180, 0, 0);
+        border-color: rgb(180, 0, 0);
+    }
+    &:focus{
+        background-color: rgb(180, 0, 0);
+        border-color: rgb(180, 0, 0);
+    }
+    .active{
+        background-color: rgb(180, 0, 0);
+    }
+}
+
+.btn-check:active+.btn-primary, .btn-check:checked+.btn-primary, .btn-primary.active, .btn-primary:active, .show>.btn-primary.dropdown-toggle{
+    background-color: rgb(180, 0, 0);
+    border-color: rgb(180, 0, 0);
+}
+
+.btn-group{
+    margin-bottom: 5px;
+}

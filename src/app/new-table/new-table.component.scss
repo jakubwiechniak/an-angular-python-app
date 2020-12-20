@@ -1,0 +1,103 @@
+label {
+    display: block;
+
+    input[type=checkbox]{
+        zoom: 2;
+        border: none;
+        background-color: #eee;
+        text-align: left;
+        width: auto;
+    }
+
+    input{
+        display: block;
+        width: 50%;
+        margin-bottom: 20px;
+        padding: 1em;
+    }
+
+    select{
+        display: block;
+        width: 50%;
+        margin-bottom: 20px;
+        padding: .6em;
+    }
+
+    .error{
+        margin-top: -20px;
+        background-color: #212529;
+        padding: .5em;
+        display: inline-block;
+        font-size: .9em;
+        color: white;
+        margin-bottom: 20px;
+    }
+}
+
+.cta-section {
+    background: red;
+    border: none;
+    color: white;
+    float: right;
+    text-transform: uppercase;
+    border-radius: 4px;
+    padding: 1em;
+    cursor: pointer;
+    font-family: "Varela Round";
+}
+
+.cta-add {
+    background: red;
+    border: none;
+    color: white;
+    float: left;
+    text-transform: uppercase;
+    border-radius: 4px;
+    padding: 1em;
+    cursor: pointer;
+    font-family: "Varela Round";
+    margin: .5em
+}
+
+.cta {
+    background: red;
+    border: none;
+    color: white;
+    float: right;
+    text-transform: uppercase;
+    border-radius: 4px;
+    padding: 1em;
+    cursor: pointer;
+    font-family: "Varela Round";
+    margin: .5em
+}
+
+.results {
+    margin-top: 50px;
+
+    strong {
+        display: block;
+    }
+
+    span{
+        margin-bottom: 20px;
+        display: block;
+    }
+}
+
+.formelem{
+    margin-top: 1em;
+    background-color: #eeeeee;
+
+    padding: 10px;
+    padding-bottom: 4em;
+}
+
+.error{
+    background-color: #212529;
+    border-radius: 5px;
+    padding: 1em;
+    color: white;
+    display: inline-block;
+    margin-bottom: 10px;
+}

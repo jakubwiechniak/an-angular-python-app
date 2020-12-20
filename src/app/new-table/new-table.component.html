@@ -1,0 +1,50 @@
+<button *ngIf="this.logged!='True'" class="cta-add" (click)="moveToLogIn()">Log in to get access</button>
+<form *ngIf="this.logged=='True'" [formGroup]="newTableForm" (ngSubmit)="onSubmit()">
+    <div  *ngIf="this.tableOutput=='Table already exist!' && this.newTableForm.controls.title.value == this.previousTitle" class="error">
+        <h1>Table with name "{{ this.newTableForm.controls.title.value }}" already exist in database!</h1>
+    </div>
+    <h1>Create new table!</h1>
+    <label>
+        Table name: <input formControlName="title" type="text">
+        <div *ngIf="submitted && this.newTableForm.controls.title.errors" class="error">
+            <div *ngIf="this.newTableForm.controls.title.errors.required">Title is required</div>
+        </div>
+    </label>
+    <label>
+        Add indexes: <input type="checkbox" formControlName="index" checked>
+    </label>
+    <h2>Specify columns:</h2>
+    <div formArrayName="new_column">
+        <div  class="formelem" *ngFor="let item of newColumn.controls; let columnIndex=index" [formGroupName]="columnIndex">
+            <label>
+                Column: <input formControlName="column" type="text">
+                <div *ngIf="submitted && this.item.controls.column.errors" class="error">
+                    <div *ngIf="this.item.controls.column.errors.required">Column name is required</div>
+                </div>
+            </label>
+            <label>
+                Type: <select formControlName="type">
+                    <option value="varchar">varchar</option>
+                    <option value="date">date</option>
+                    <option value="bool">boolean</option>
+                </select>
+                <div *ngIf="submitted && this.item.controls.type.errors" class="error">
+                    <div *ngIf="this.item.controls.type.errors.required">Column type is required</div>
+                </div>
+            </label>
+            <label *ngIf="this.item.controls.type.value=='varchar'">
+                Size: <input formControlName="size" type="text">
+            </label>
+            <label>
+                <span>Not null:</span>
+                <input class="checkk" type="checkbox" formControlName="notnull">
+            </label>
+            <label>
+                Default value: <input type="text" formControlName="defval">
+            </label>
+            <button type="button" class="cta-section" (click)="deleteExistingColumn(columnIndex)">Delete</button>
+        </div>
+        <button type="button" class="cta-add" (click)="addNewColumn()">Add</button>
+    </div>
+    <input type="submit" value="Zatwierdź" class="cta">
+</form>

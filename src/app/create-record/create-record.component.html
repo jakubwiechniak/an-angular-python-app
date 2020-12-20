@@ -1,0 +1,16 @@
+<button *ngIf="this.logged!='True'" class="cta" (click)="moveToLogIn()">Log in to get access</button>
+<label  *ngIf="this.logged=='True'">
+    <h1>Choose table:</h1>
+    <select *ngIf="tables" #t (change)="selectChange(t.value)">
+        <option value=""></option>
+        <option *ngFor="let table of tables" value="{{table}}">{{table}}</option>
+    </select>
+</label>
+
+<form *ngIf="insertForm" [formGroup]="insertForm" (ngSubmit)="onSubmit()">
+    <label *ngFor="let item of columns">
+        <h3>{{ item }}:</h3>
+        <input formControlName="{{ item }}" type="text">
+    </label>
+    <input type="submit" class="cta" value="Send">
+</form>

@@ -1,0 +1,21 @@
+label{
+    display: block;
+    margin-top: 10px;
+}
+
+.cta {
+    background: red;
+    border: none;
+    color: white;
+    float: right;
+    text-transform: uppercase;
+    border-radius: 4px;
+    padding: 1em;
+    cursor: pointer;
+    font-family: "Varela Round";
+    margin: .5em
+}
+
+form{
+    padding-bottom: 2em;
+}

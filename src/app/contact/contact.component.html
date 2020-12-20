@@ -1,0 +1,29 @@
+<h1 *ngIf="this.logged!='True'">Log in!</h1>
+<div *ngIf="this.logged=='True'" class="error">
+    <h1>You are logged in</h1>
+</div>
+<form *ngIf="this.logged!='True'" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <h5 *ngIf="this.loginOutput=='Success'">Success</h5>
+    <h5 *ngIf="this.loginOutput=='Failed'">There was an error</h5>
+
+    <label>
+        Login:
+        <input type="text" formControlName="login">
+        <div *ngIf="submitted && loginForm.controls.login.errors" class="error">
+            <div *ngIf="loginForm.controls.login.errors.required">Login is required.</div>
+        </div>
+    </label>
+
+    <label>
+        Password:
+        <input type="password" formControlName="password">
+        <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
+            <div *ngIf="loginForm.controls.password.errors.required">Password is required.</div>
+        </div>
+    </label>
+
+    <input type="submit" value="Submit" class="cta">
+
+</form>
+<button *ngIf="this.logged=='True'" (click)="logOut()" class="cta">Logout</button>
