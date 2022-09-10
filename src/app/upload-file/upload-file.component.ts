@@ -15,7 +15,7 @@ export class UploadFileComponent implements OnInit {
   submitted = false;
   success = false;
   fileSent: Boolean;
-  logged="False";
+  logged = "False";
   constructor(private formBuilder: FormBuilder, private data: DataService, private http: HttpClient, private cookieService: CookieService, private router: Router) {
     this.FileUpload = this.formBuilder.group({
       file: ['', Validators.required]
@@ -26,10 +26,11 @@ export class UploadFileComponent implements OnInit {
     formData.append('file', this.FileUpload.get('profile').value);
 
     this.http.post('https://isjeifieowoewrpoorie23a.herokuapp.com/plik', formData).subscribe(
-      (res) => {console.log(res)
-        if(res == "Failed"){
+      (res) => {
+        console.log(res)
+        if (res == "Failed") {
           this.fileSent = false
-        }else{
+        } else {
           this.fileSent = true
         }
       },
@@ -46,10 +47,10 @@ export class UploadFileComponent implements OnInit {
     this.FileUpload = this.formBuilder.group({
       profile: ['']
     });
-    this.logged=this.cookieService.get('Logged')
+    this.logged = this.cookieService.get('Logged')
   }
 
-  moveToLogIn(){
+  moveToLogIn() {
     this.router.navigateByUrl('/contact')
   }
 }

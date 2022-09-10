@@ -16,17 +16,17 @@ export class CreateRecordComponent implements OnInit {
   insertForm: FormGroup;
   tableOutput: Object;
   tableToInsert: String;
-  logged= "False";
+  logged = "False";
 
   constructor(private http: HttpClient, private formBuilder: FormBuilder, private cookieService: CookieService, private router: Router) {
 
   }
 
-  
+
 
   ngOnInit(): void {
     this.logged = this.cookieService.get('Logged')
-    if(this.logged == "True"){
+    if (this.logged == "True") {
       this.getTables().then(data => {
         this.tables = data
       })
@@ -35,17 +35,17 @@ export class CreateRecordComponent implements OnInit {
   }
 
 
-  selectChange(tab){
+  selectChange(tab) {
     this.tableToInsert = tab
     this.getColumns(tab).then(data => {
       this.columns = data
       var dataArr = []
-      Object.keys(data).map(function(key){  
-        dataArr.push(data[key])  
-        return dataArr;  
+      Object.keys(data).map(function (key) {
+        dataArr.push(data[key])
+        return dataArr;
       });
       let obj = {}
-      dataArr.forEach(elem => {  
+      dataArr.forEach(elem => {
         obj[elem] = ""
       })
       this.insertForm = this.formBuilder.group(obj)
@@ -53,26 +53,26 @@ export class CreateRecordComponent implements OnInit {
     })
   }
 
-  getColumns(tab){
-    return this.http.post("https://isjeifieowoewrpoorie23a.herokuapp.com/getcolumn", {table: tab}).toPromise()
+  getColumns(tab) {
+    return this.http.post("https://isjeifieowoewrpoorie23a.herokuapp.com/getcolumn", { table: tab }).toPromise()
   }
 
-  getTables(){
-    return this.http.post("https://isjeifieowoewrpoorie23a.herokuapp.com/gettable", {pass: "teXato21ts"}).toPromise()
+  getTables() {
+    return this.http.post("https://isjeifieowoewrpoorie23a.herokuapp.com/gettable", { pass: "teXato21ts" }).toPromise()
   }
 
-  onSubmit(){
+  onSubmit() {
     this.insertUserRow().then(data => {
       this.tableOutput = data
-      window.scroll(0,0)
+      window.scroll(0, 0)
     })
   }
 
-  insertUserRow(){
-    return this.http.post("https://isjeifieowoewrpoorie23a.herokuapp.com/insertrow", {dict : this.insertForm.value, table: this.tableToInsert}).toPromise()
+  insertUserRow() {
+    return this.http.post("https://isjeifieowoewrpoorie23a.herokuapp.com/insertrow", { dict: this.insertForm.value, table: this.tableToInsert }).toPromise()
   }
 
-  moveToLogIn(){
+  moveToLogIn() {
     this.router.navigateByUrl('/contact')
   }
 }

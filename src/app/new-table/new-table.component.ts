@@ -12,63 +12,63 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class NewTableComponent implements OnInit {
 
-  newTableForm : FormGroup;
+  newTableForm: FormGroup;
   tableOutput: Object;
   previousTitle: String;
   submitted = false;
   success = false;
   index = 0;
-  logged="False";
+  logged = "False";
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    this.logged=this.cookieService.get('Logged')
-    if(this.logged=='True'){
+    this.logged = this.cookieService.get('Logged')
+    if (this.logged == 'True') {
       this.newTableForm = this.formBuilder.group({
         title: ['', Validators.required],
-        index: [true, ],
+        index: [true,],
         new_column: this.formBuilder.array([this.formBuilder.group({
-        column: ['', Validators.required],
-        type: ['', Validators.required],
-        size: ['', ],
-        notnull: [false, ],
-        defval: ['', ]
-      })])
+          column: ['', Validators.required],
+          type: ['', Validators.required],
+          size: ['',],
+          notnull: [false,],
+          defval: ['',]
+        })])
       })
-  }
+    }
   }
 
-  
 
-  get newColumn(){
+
+  get newColumn() {
     return this.newTableForm.get('new_column') as FormArray;
   }
 
-  addNewColumn(){
-    this.newColumn.push(this.formBuilder.group({column: ['', Validators.required],type:['', Validators.required], size: '', notnull: false, defval: ''}));
-    this.index ++;
+  addNewColumn() {
+    this.newColumn.push(this.formBuilder.group({ column: ['', Validators.required], type: ['', Validators.required], size: '', notnull: false, defval: '' }));
+    this.index++;
 
   }
 
-  deleteExistingColumn(index){
+  deleteExistingColumn(index) {
     this.newColumn.removeAt(index);
   }
-  
 
-  onSubmit(){
+
+  onSubmit() {
     this.submitted = true;
 
-    if(this.newTableForm.invalid){
+    if (this.newTableForm.invalid) {
       return;
     }
 
     this.success = true;
-    if(this.success){
+    if (this.success) {
       this.postNewTableForm().then(data => {
         this.tableOutput = data
-        window.scroll(0,0)
-        if(this.tableOutput == "Success!"){
+        window.scroll(0, 0)
+        if (this.tableOutput == "Success!") {
           this.router.navigateByUrl('/createdt')
         }
       })
@@ -76,11 +76,11 @@ export class NewTableComponent implements OnInit {
     }
   }
 
-  postNewTableForm(){
+  postNewTableForm() {
     return this.http.post("https://isjeifieowoewrpoorie23a.herokuapp.com/createtable", this.newTableForm.value).toPromise()
   }
 
-  moveToLogIn(){
+  moveToLogIn() {
     this.router.navigateByUrl('/contact')
   }
 }

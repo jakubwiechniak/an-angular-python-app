@@ -15,7 +15,6 @@ import { NewTableComponent } from './new-table/new-table.component';
 import { CreatedTabOutputComponent } from './created-tab-output/created-tab-output.component';
 import { CreateRecordComponent } from './create-record/create-record.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
-import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { TestComponent } from './test/test.component';
     CreatedTabOutputComponent,
     CreateRecordComponent,
     UploadFileComponent,
-    TestComponent
   ],
   imports: [
     BrowserModule,

@@ -14,33 +14,33 @@ export class ContactComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   success = false;
-  logged="False";
+  logged = "False";
   loginOutput: String;
 
 
-  constructor(private formBuilder: FormBuilder,private data: DataService, private http: HttpClient, private cookieService: CookieService) {
+  constructor(private formBuilder: FormBuilder, private data: DataService, private http: HttpClient, private cookieService: CookieService) {
     this.loginForm = this.formBuilder.group({
       login: ['', Validators.required],
       password: ['', Validators.required]
     })
   }
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
 
-    if(this.loginForm.invalid){
+    if (this.loginForm.invalid) {
       return;
     }
 
     this.success = true;
-    if(this.success){
-      this.tryLogIn().then(data =>{
+    if (this.success) {
+      this.tryLogIn().then(data => {
         this.loginOutput = String(data)
-        if(data == "Success"){
+        if (data == "Success") {
           this.cookieService.set("Logged", "True")
-          this.logged=this.cookieService.get('Logged')
+          this.logged = this.cookieService.get('Logged')
           window.location.reload()
-        }else{
+        } else {
           this.cookieService.set("Logged", "False")
           this.cookieService.delete('Logged')
         }
@@ -48,16 +48,16 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  logOut(){
+  logOut() {
     this.cookieService.delete('Logged')
     window.location.reload()
   }
 
-  tryLogIn(){
-    return this.http.post('https://isjeifieowoewrpoorie23a.herokuapp.com/login', {login: this.loginForm.get("login").value,password: this.loginForm.get("password").value}).toPromise()
+  tryLogIn() {
+    return this.http.post('https://isjeifieowoewrpoorie23a.herokuapp.com/login', { login: this.loginForm.get("login").value, password: this.loginForm.get("password").value }).toPromise()
   }
   ngOnInit(): void {
-    this.logged=this.cookieService.get('Logged')
+    this.logged = this.cookieService.get('Logged')
   }
 
 }
