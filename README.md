@@ -1,4 +1,6 @@
-# FirstPage
+# Simple Angular SPA
+
+This app was created as the final project in ABB internship in December 2020. It works on the PostgreSQL database, created with importing sample .xlsx file and a backend server based on the Python Flask.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.3.
 
